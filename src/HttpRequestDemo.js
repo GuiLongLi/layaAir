@@ -7,7 +7,6 @@ xhr.once(Event.COMPLETE,this,completeHandler);
 xhr.once(Event.ERROR,this,errorHandler);
 xhr.on(Event.PROGRESS,this,processHandler);
 xhr.send("http://localhost",'','get','text');
-
 function processHandler(data){
     console.log(data);
 }

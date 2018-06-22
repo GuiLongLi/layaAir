@@ -53464,23 +53464,20 @@ var scale2UI=(function(_super){
 		return scale2UI;
 	})(EffectAnimation);
 //httpRequest请求
-//初始化舞台
+//初始化引擎
 Laya.init(1136,640);
 var xhr = new Laya.HttpRequest();
-xhr.http.timeout = 3; //超时时间
+xhr.http.timeout = 3;//设置超时时间；
 xhr.once(Event.COMPLETE,this,completeHandler);
 xhr.once(Event.ERROR,this,errorHandler);
 xhr.on(Event.PROGRESS,this,processHandler);
-xhr.send("http://localhost",'','get','text');
-
+xhr.send("http://localhost","123","get","text");
 function processHandler(data){
     console.log(data);
 }
 function errorHandler(data){
-    console.log(data);
 }
-function completeHandler(data){
-    console.log(data);
+function completeHandler(e){
 }
 // //spine动画
 // //初始化舞台
