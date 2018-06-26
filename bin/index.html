@@ -36,11 +36,35 @@
     <script type="text/javascript" src="libs/laya.tiledmap.js"></script>
 	<!--提供了制作UI的各种组件实现-->
     <script type="text/javascript" src="libs/laya.ui.js"></script>
+	<!--提供了获取地理位置支持-->
+    <script type="text/javascript" src="libs/laya.device.js"></script>
+	<!--debug调试工具-->
+	<script type="text/javascript" src="libs/laya.debugtool.js"></script>
+	<!--worker-->
+	<!--<script>
+		var myWorker = new Worker('libs/my_task.js');
+		myWorker.onmessage = function(oEvent){
+			console.log('called back by the worker!\n');
+		};
+		myWorker.postMessage('start');//start the worker
+	</script>-->
+	<!--百度地图api-->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LIhOlvWfdiPYMCsK5wsqlFQD8wW4Bfy6"></script>
 	<!--自定义的js(src文件夹下)文件自动添加到下面jsfile模块标签里面里，js的顺序可以手动修改，修改后保留修改的顺序，新增加的js会默认依次追加到标签里-->
 	<!--删除标签，ide不会自动添加js文件，请谨慎操作-->
-	
 	<script src="../src/ui/layaUI.max.all.js"></script>
 	<!--jsfile--startTag-->
+	<script src="../src/WorkerDemo.js"></script>
+	<script src="../src/XMLHttpRequestDemo.js"></script>
+	<script src="../src/ExpandPageScriptDemo.js"></script>
+	<script src="../src/game/MonkeyScript.js"></script>
+	<script src="../src/ExpandPageUIDemo.js"></script>
+	<script src="../src/game/MonkeyProp.js"></script>
+	<script src="../src/game/ImageRunTime.js"></script>
+	<script src="../src/RunTimeDemo.js"></script>
+	<script src="../src/ScreenDemo.js"></script>
+	<script src="../src/GeolocationDemo.js"></script>
+	<script src="../src/DeviceMotionDemo.js"></script>
 	<script src="../src/SoundManagerDemo.js"></script>
 	<script src="../src/WebStorageDemo.js"></script>
 	<script src="../src/JsonpDemo.js"></script>

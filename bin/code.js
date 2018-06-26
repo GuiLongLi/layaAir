@@ -53463,21 +53463,198 @@ var scale2UI=(function(_super){
 		scale2UI.uiView={"type":"View","props":{},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"ui/monkey2.png"},"compId":2}],"animations":[{"nodes":[{"target":2,"keyframes":{"scaleY":[{"value":1,"tweenMethod":"linearNone","tween":true,"target":2,"key":"scaleY","index":0},{"value":1,"tweenMethod":"linearNone","tween":true,"target":2,"key":"scaleY","index":1},{"value":0.2,"tweenMethod":"linearNone","tween":true,"target":2,"key":"scaleY","index":12}],"scaleX":[{"value":1,"tweenMethod":"linearNone","tween":true,"target":2,"key":"scaleX","index":0},{"value":1,"tweenMethod":"linearNone","tween":true,"target":2,"key":"scaleX","index":1},{"value":0.2,"tweenMethod":"linearNone","tween":true,"target":2,"key":"scaleX","index":12}]}}],"name":"ani1","id":1,"frameRate":24,"action":0}]};
 		return scale2UI;
 	})(EffectAnimation);
+// //音乐和音效的播放与控制
+// (function()
+// {
+// 	var Sprite       = Laya.Sprite;
+// 	var Stage        = Laya.Stage;
+// 	var Text         = Laya.Text;
+// 	var Event        = Laya.Event;
+// 	var SoundManager = Laya.SoundManager;
+// 	var Browser      = Laya.Browser;
+// 	var Handler      = Laya.Handler;
+// 	var WebGL        = Laya.WebGL;
+
+// 	//声明一个信息文本
+// 	var txtInfo;
+
+// 	(function()
+// 	{
+// 		// 不支持WebGL时自动切换至Canvas
+// 		Laya.init(Browser.clientWidth, Browser.clientHeight, WebGL);
+
+// 		Laya.stage.alignV = Stage.ALIGN_MIDDLE;
+// 		Laya.stage.alignH = Stage.ALIGN_CENTER;
+
+// 		Laya.stage.scaleMode = "showall";
+// 		Laya.stage.bgColor = "#232628";
+
+// 		setup();
+// 	})();
+
+// 	function setup()
+// 	{
+// 		var gap = 10;
+
+// 		//创建一个Sprite充当音效播放按钮
+// 		var soundButton = createButton("播放音效");
+// 		soundButton.x = (Laya.stage.width - soundButton.width * 2 + gap) / 2;
+// 		soundButton.y = (Laya.stage.height - soundButton.height) / 2;
+// 		Laya.stage.addChild(soundButton);
+
+// 		//创建一个Sprite充当音乐播放按钮
+// 		var musicButton = createButton("播放音乐");
+// 		musicButton.x = soundButton.x + gap + soundButton.width;
+// 		musicButton.y = soundButton.y;
+// 		Laya.stage.addChild(musicButton);
+
+// 		soundButton.on(Event.CLICK, this, onPlaySound);
+// 		musicButton.on(Event.CLICK, this, onPlayMusic);
+// 	}
+
+// 	function createButton(label)
+// 	{
+// 		var w = 110;
+// 		var h = 40;
+
+// 		var button = new Sprite();
+// 		button.size(w, h);
+// 		button.graphics.drawRect(0, 0, w, h, "#FF7F50");
+// 		button.graphics.fillText(label, w / 2, 8, "25px SimHei", "#FFFFFF", "center");
+// 		Laya.stage.addChild(button);
+// 		return button;
+// 	}
+
+// 	function onPlayMusic(e)
+// 	{
+// 		console.log("播放音乐");
+// 		SoundManager.playMusic("res/sounds/bgm.mp3", 0, new Handler(this, onComplete));
+// 	}
+
+// 	function onPlaySound(e)
+// 	{
+// 		console.log("播放音效");
+// 		SoundManager.playSound("res/sounds/btn.mp3", 0, new Handler(this, onComplete));
+// 	}
+
+// 	function onComplete()
+// 	{
+// 		console.log("播放完成");
+// 	}
+// })();
+// //WebStorage数据存储
+// //初始化舞台
+// Laya.init(100,100);
+
+// //LocalStorage例子
+// Laya.LocalStorage.setItem('key','hello');
+// var data = {'index':0,'index1':1};
+// var str = JSON.stringify(data);
+// Laya.LocalStorage.setItem('data','hello');
+// Laya.LocalStorage.setItem('item',str);
+// //清除指定的数据
+// Laya.LocalStorage.removeItem('data'); 
+// //清除所有数据
+// Laya.LocalStorage.clear();
+
+// //SessionStorage例子
+// var sessionStorage = Laya.Browser.window.sessionStorage;
+// if(sessionStorage.pagecount){
+//     sessionStorage.pagecount = parseInt(sessionStorage.pagecount)+1;
+// }
+// else{
+//     sessionStorage.pagecount = 1;
+// }
+// console.log(sessionStorage.pagecount);
+
+
+// // JSONP跨域读取数据
+// var LayaSample = (function(){
+//     function LayaSample(){
+//         Laya.init(100,100);
+//         var script = Laya.Browser.createElement("script");
+//         Laya.Browser.document.body.appendChild(script);
+//         script.src = "http://localhost:80/?a=1";
+//     }
+//     LayaSample.onComplete = function(){
+//         console.log("JSONP执行到这里");
+//     }
+//     return LayaSample;
+// })();
+// new LayaSample();
+// //WebSocket数据交换
+// // 初始化引擎
+// Laya.init(600,400,Laya.WebGL);
+// this.byte = new Laya.Byte();
+// //这里我们使用小端
+// this.byte.endian = Laya.Byte.LITTLE_ENDIAN;
+// this.socket= new Laya.Socket();
+// //这里我们采用小端
+// this.socket.endian = Laya.Byte.LITTLE_ENDIAN;
+// //建立连接
+// this.socket.connectByUrl("ws://localhost:8989");
+// this.socket.on(Laya.Event.OPEN,this,openHandler);
+// this.socket.on(Laya.Event.MESSAGE,this,receiveHandler);
+// this.socket.on(Laya.Event.CLOSE,this,closeHandler);
+// this.socket.on(Laya.Event.ERROR,this,errorHandler);
+// function openHandler(event){
+//     //正确建立连接
+//     console.log('正确建立连接');
+//     this.socket.send("hello world");//这是发送字符串的形式。
+
+//     //实例化一个二进制数组Byte
+//     var byte = new Laya.Byte();
+//     console.log(byte);
+//     //或者传入一个类型化数组
+//     var uint8Byte = new Uint8Array(10);
+//     var byte = new Laya.Byte(uint8Byte);
+//     console.log(byte);
+//     //或者传入一个ArrayBuffer类型
+//     var buffer = new ArrayBuffer(20);
+//     var byte = new Laya.Byte(buffer);
+//     console.log(byte);
+
+//     var byte = new Laya.Byte();
+//     var byte1 = new Laya.Byte();
+//     byte1.writeFloat32(20.0);//写入一个四个字节的浮点数
+//     byte1.writeInt16(16);//写入一个两个字节的整数
+//     byte1.writeUTFString("hell world");//写入一个字符串；
+//     byte.writeArrayBuffer(byte1.buffer,6);//把byte1的数据从第六个字节开始读入byte中。省略其中的浮点数20.0和整数16
+//     byte.pos = 0;//当前读取到的位置。
+//     console.log(byte.readUTFString())//从byte中读出字符串。
+//     byte1.pos = 0;//当前读取到的位置。
+//     console.log(byte1.getFloat32())//在指定字节偏移量位置处读取 Float32 值。
+// }
+// function receiveHandler(msg){
+//     //接受到数据触发函数
+//     console.log('接受到数据触发函数');
+// }
+// function closeHandler(e){
+//     //关闭事件
+//     console.log('关闭事件');
+// }
+// function errorHandler(e){
+//     //连接出错
+//     console.log('连接出错');
+// }
+
 //httpRequest请求
-//初始化引擎
+//初始化舞台
 Laya.init(1136,640);
 var xhr = new Laya.HttpRequest();
-xhr.http.timeout = 3;//设置超时时间；
-xhr.once(Event.COMPLETE,this,completeHandler);
-xhr.once(Event.ERROR,this,errorHandler);
-xhr.on(Event.PROGRESS,this,processHandler);
-xhr.send("http://localhost","123","get","text");
+xhr.http.timeout = 3; //超时时间
+xhr.once(Laya.Event.COMPLETE,Laya,completeHandler);
+xhr.once(Laya.Event.ERROR,Laya,errorHandler);
+xhr.on(Laya.Event.PROGRESS,Laya,processHandler);
+xhr.send("http://localhost",'','get','text');
 function processHandler(data){
-    console.log(data);
+    console.log(11);
 }
 function errorHandler(data){
+    console.log(22);
 }
-function completeHandler(e){
+function completeHandler(data){
+    console.log(33);
 }
 // //spine动画
 // //初始化舞台
