@@ -24,34 +24,38 @@
 //     }
 // }
 
-//上传图片
-Laya.init(100,100);
-var skins = ['res/img/btn/rock.png'];
-Laya.loader.load(skins,Laya.Handler.create(this,onUIAssetsLoaded));
-function onUIAssetsLoaded(){
-    var btn = new Laya.Button('res/img/btn/rock.png');
-    Laya.stage.addChild(btn);
+// //上传图片
+// Laya.init(100,100);
+// var body = Laya.Browser.document.getElementsByTagName('body')[0];
+// body.style="margin:0px;padding:0px;";
+// var skins = ['res/img/btn/rock.png'];
+// Laya.loader.load(skins,Laya.Handler.create(this,onUIAssetsLoaded));
+// function onUIAssetsLoaded(){
+//     var btn = new Laya.Button('res/img/btn/rock.png');
+//     btn.width = 47;
+//     btn.height = 47;
+//     Laya.stage.addChild(btn);
 
-    //创建隐藏的file并且把它和按钮对齐，到达位置一直，这里我们默认在0点位置
-    var file = Laya.Browser.document.createElement('input');
-    //设置file样式
-    file.style = "filter:alpha(opacity=0);opacity:0;width:150px;height:60px;";
-    file.type = 'file';
-    file.accept = 'image/png';
-    file.style.position = "absolute";
-    file.style.zIndex = 999;
-    Laya.Browser.document.body.appendChild(file);
-    var fileReader = new Laya.Browser.window.FileReader();
-    file.onchange = function(e){
-        if(file.files.length > 0){
-            fileReader.readAsDataURL(file.files[0]);
-        }
-    };
-    fileReader.onload = function(evt){
-        if(Laya.Browser.window.FileReader.DONE == fileReader.readyState){
-            var sp = new Laya.Sprite();
-            sp.loadImage(fileReader.result,0,0,100,100);
-            Laya.stage.addChild(sp);
-        }
-    }
-}
+//     //创建隐藏的file并且把它和按钮对齐，到达位置一直，这里我们默认在0点位置
+//     var file = Laya.Browser.document.createElement('input');
+//     //设置file样式
+//     file.style = "filter:alpha(opacity=0);opacity:0;margin:0px;padding:0px;width:47px;height:47px;";
+//     file.type = 'file';
+//     file.accept = 'image/png';
+//     file.style.position = "absolute";
+//     file.style.zIndex = 999;
+//     Laya.Browser.document.body.appendChild(file);
+//     var fileReader = new Laya.Browser.window.FileReader();
+//     file.onchange = function(e){
+//         if(file.files.length > 0){
+//             fileReader.readAsDataURL(file.files[0]);
+//         }
+//     };
+//     fileReader.onload = function(evt){
+//         if(Laya.Browser.window.FileReader.DONE == fileReader.readyState){
+//             var sp = new Laya.Sprite();
+//             sp.loadImage(fileReader.result,0,0,100,100);
+//             Laya.stage.addChild(sp);
+//         }
+//     }
+// }
