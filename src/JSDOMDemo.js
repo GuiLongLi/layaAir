@@ -16,3 +16,15 @@
 // sp.loadImage(data,0,0,200,200);
 // Laya.stage.addChild(sp);
 
+// //插入iframe
+// Laya.init(500,500);
+// Laya.stage.once(Laya.Event.CLICK,this,clickHandler);
+// function clickHandler(){
+//     var iframe = Laya.Browser.document.createElement('iframe');
+//     iframe.style.position = 'absolute';
+//     iframe.style.zIndex = 100;
+//     iframe.style.left = '100px';
+//     iframe.style.top = '100px';
+//     iframe.src = 'http://ask.layabox.com';
+//     Laya.Browser.document.body.appendChild(iframe);
+// }
